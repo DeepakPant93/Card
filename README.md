@@ -1,2 +1,2 @@
-# Card
-Card repo for Cards project
+# Cards Service
+Cards service is used to perform curd operation on cards
