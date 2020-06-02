@@ -6,7 +6,9 @@ public enum ErrorCode {
 	BUSINESS_EXCEPTION("CS-422"),
 	BAD_REQUEST("CS-400"),
 	RESOURCE_NOT_FOUND("CS-1001"),
-	FIELD_REQUIRED("CS-1002");
+	FIELD_REQUIRED("CS-1002"),
+        PATTREN_MISMATCHED("CS-1003"),
+        SIZE_MISMATCHED("CS-1003");
 
 	private final String code;
 

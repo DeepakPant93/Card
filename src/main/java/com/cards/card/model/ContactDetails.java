@@ -2,6 +2,8 @@ package com.cards.card.model;
 
 import java.util.List;
 
+import com.cards.card.validator.annotation.NotEmptyCollection;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class ContactDetails {
 
-	private List<String> emails;
-	private List<MobileDetails> mobileDetails;
+    
+    private String email;
+    private boolean emailVerified;
+    @NotEmptyCollection
+    private List<MobileDetails> mobileDetails;
 
 }

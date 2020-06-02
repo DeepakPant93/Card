@@ -18,7 +18,7 @@ import com.cards.card.validator.NotBlankValidator;
 @Retention(RUNTIME)
 @Constraint(validatedBy = NotBlankValidator.class)
 @Target({ TYPE, FIELD, PARAMETER })
-public @interface NotBlank {
+public @interface Pin {
 
 	String message() default FIELD_REQUIRED;
 

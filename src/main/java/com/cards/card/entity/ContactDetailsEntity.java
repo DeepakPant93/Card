@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class ContactDetailsEntity {
 
-	private List<String> emails;
+	private String email;
 	private List<MobileDetailsEntiy> mobileDetails;
+        private boolean emailVerified;
 
 }

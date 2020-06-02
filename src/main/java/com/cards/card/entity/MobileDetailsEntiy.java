@@ -1,7 +1,5 @@
 package com.cards.card.entity;
 
-import java.math.BigInteger;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class MobileDetailsEntiy {
 
 	private String code;
-	private BigInteger number;
+	private String number;
 	private boolean whatsApp;
 	private boolean verified;
 }

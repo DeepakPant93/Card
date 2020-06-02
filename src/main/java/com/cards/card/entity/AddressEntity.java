@@ -15,7 +15,7 @@ public class AddressEntity {
 	private String state;
 	private String district;
 	private String country;
-	private int pin;
+	private String pin;
 	private String landmark;
 	private String addressLine1;
 	private String addressLine2;
