@@ -9,5 +9,8 @@ public interface CardConstants {
 
 	interface DeveloperMessage {
 		String FIELD_REQUIRED = "FIELD_REQUIRED";
+                String PATTREN_MISMATCHED="PATTREN_MISMATCHED";
+                String SIZE_MISMATCHED="SIZE_MISMATCHED";
+                
 	}
 }

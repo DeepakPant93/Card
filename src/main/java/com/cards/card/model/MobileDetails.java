@@ -1,7 +1,5 @@
 package com.cards.card.model;
 
-import java.math.BigInteger;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class MobileDetails {
 
 	private String code;
-	private BigInteger number;
-	private boolean whatsApp;
+	private String number;
+	private boolean enableWhatsAppNumber;
 	private boolean verified;
 }
