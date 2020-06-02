@@ -1,8 +1,10 @@
 # Building the Project
 FROM maven:3.6.3-openjdk-14
-COPY pom.xml /build/
-COPY src /build/src/
 WORKDIR /build/
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+COPY src /build/src/
 RUN mvn clean package -DskipTests
 
 # Deploying the Project
