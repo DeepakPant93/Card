@@ -1,4 +1,4 @@
-package com.cards.card.model;
+package com.cards.card.model.card;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,10 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
-public class MobileDetails {
+public class Location {
 
-	private String code;
-	private String number;
-	private boolean enableWhatsAppNumber;
-	private boolean verified;
+	private String name;
+	private double longitude;
+	private double latitude;
 }

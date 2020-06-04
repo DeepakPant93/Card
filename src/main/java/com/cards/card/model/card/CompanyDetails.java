@@ -1,4 +1,4 @@
-package com.cards.card.model;
+package com.cards.card.model.card;
 
 import javax.validation.Valid;
 import lombok.AccessLevel;
@@ -13,15 +13,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class CompanyDetails {
 
-    private String name;
-    private String tagLine;
-    private String website;
-    private String logo;
-    private String logoImageUrl;
+	private String name;
+	private String tagLine;
+	private String website;
+	private String logo;
+	private String thumbnailUrl;
+	private String logoImageUrl;
 
-    @Valid
-    private Address address;
+	@Valid
+	private Address address;
 
-    @Valid
-    private ContactDetails contactDetails;
+	@Valid
+	private ContactDetails contactDetails;
 }

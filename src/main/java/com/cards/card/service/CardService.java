@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cards.card.entity.CardEntity;
 import com.cards.card.execption.SystemException;
-import com.cards.card.model.Card;
+import com.cards.card.model.card.Card;
 import com.cards.card.repository.CardRepository;
 import com.cards.card.transformer.entity.EntityToModelTransformer;
 import com.cards.card.transformer.model.ModelToEntityTransformer;
