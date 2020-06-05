@@ -33,7 +33,7 @@ public class CardService {
 			throw new ResourceNotFoundException("Unable to found any card for id " + id);
 		}
 
-		if (cardEntityTemp.isPresent() && !CardContext.getUserId().equalsIgnoreCase(cardEntityTemp.get().getUserId())) {
+		if (!CardContext.getUserId().equalsIgnoreCase(cardEntityTemp.get().getUserId())) {
 			throw new ResourceNotAuthorizedException(String
 					.format("User %s is not authorized to view the card with id %s", CardContext.getUserId(), id));
 		}

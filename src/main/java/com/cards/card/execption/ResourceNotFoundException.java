@@ -6,7 +6,7 @@ import com.cards.card.exception.model.ErrorCode;
 
 public class ResourceNotFoundException extends BusinessException {
 
-	private static final long serialVersionUID = 2876107259032374879L;
+	private static final long serialVersionUID = 487703573561058809L;
 
 	private static final ErrorCode CODE = RESOURCE_NOT_FOUND;
 

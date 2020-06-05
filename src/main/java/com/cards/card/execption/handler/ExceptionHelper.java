@@ -1,6 +1,6 @@
 package com.cards.card.execption.handler;
 
-import static com.cards.card.exception.model.ErrorCode.BAD_REQUEST;
+import static com.cards.card.exception.model.ErrorCode.*;
 import static com.cards.card.exception.model.ErrorCode.BUSINESS_EXCEPTION;
 
 import java.util.List;
@@ -17,6 +17,7 @@ import com.cards.card.exception.model.ApiError;
 import com.cards.card.exception.model.ErrorAttribute;
 import com.cards.card.exception.model.ErrorCode;
 import com.cards.card.exception.model.ErrorDetails;
+import com.cards.card.execption.AuthenticationException;
 import com.cards.card.execption.BusinessException;
 
 import lombok.AllArgsConstructor;
@@ -40,6 +41,14 @@ public class ExceptionHelper {
 				.message(getMessage(exception.getCode(), locale)).attribute(exception.getAttribute()).build();
 
 		return ApiError.builder().code(BUSINESS_EXCEPTION.code()).message(getMessage(BUSINESS_EXCEPTION, locale))
+				.details(List.of(errorDetails)).build();
+	}
+	
+	public ApiError apiError(AuthenticationException exception, Locale locale) {
+		ErrorDetails errorDetails = ErrorDetails.builder().code(exception.getCode().code())
+				.message(getMessage(exception.getCode(), locale)).build();
+
+		return ApiError.builder().code(UNAUTHORIZED.code()).message(getMessage(UNAUTHORIZED, locale))
 				.details(List.of(errorDetails)).build();
 	}
 
