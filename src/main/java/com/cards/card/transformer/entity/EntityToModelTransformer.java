@@ -13,12 +13,12 @@ import com.cards.card.entity.CompanyDetailsEntity;
 import com.cards.card.entity.ContactDetailsEntity;
 import com.cards.card.entity.MobileDetailsEntiy;
 import com.cards.card.entity.PersonalDetailsEntity;
-import com.cards.card.model.Address;
-import com.cards.card.model.Card;
-import com.cards.card.model.CompanyDetails;
-import com.cards.card.model.ContactDetails;
-import com.cards.card.model.MobileDetails;
-import com.cards.card.model.PersonalDetails;
+import com.cards.card.model.card.Address;
+import com.cards.card.model.card.Card;
+import com.cards.card.model.card.CompanyDetails;
+import com.cards.card.model.card.ContactDetails;
+import com.cards.card.model.card.MobileDetails;
+import com.cards.card.model.card.PersonalDetails;
 
 /**
  *
@@ -28,12 +28,12 @@ import com.cards.card.model.PersonalDetails;
 @Component
 public class EntityToModelTransformer implements Function<CardEntity, Card> {
 
-    @Override
-    public Card apply(CardEntity cardEntity) {
-        return Card.builder().personalDetails(populatePersonalDetails(cardEntity.getPersonalDetails()))
-                .companyDetails(populateCompanyDetails(cardEntity.getCompanyDetails()))
-                .build();
-    }
+	@Override
+	public Card apply(CardEntity cardEntity) {
+	      return Card.builder().personalDetails(populatePersonalDetails(cardEntity.getPersonalDetails()))
+	      .companyDetails(populateCompanyDetails(cardEntity.getCompanyDetails()))
+	      .build();
+	}
 
     private PersonalDetails populatePersonalDetails(PersonalDetailsEntity detailsEntity) {
         return PersonalDetails.builder().firstname(detailsEntity.getFirstname())
@@ -73,10 +73,7 @@ public class EntityToModelTransformer implements Function<CardEntity, Card> {
     }
 
     private List<MobileDetails> populateMobileDetailList(List<MobileDetailsEntiy> mobileDetailses) {
-        return mobileDetailses.stream().map(mobile -> {
-            return populateMobileDetail(mobile);
-        }).collect(Collectors.toList());
-
+        return mobileDetailses.stream().map(mobile -> populateMobileDetail(mobile)).collect(Collectors.toList());
     }
 
     private MobileDetails populateMobileDetail(MobileDetailsEntiy mobile) {

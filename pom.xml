@@ -16,7 +16,7 @@
 	<description>Card Service</description>
 
 	<properties>
-		<java.version>14</java.version>
+		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<swagger2.version>2.9.2</swagger2.version>
@@ -96,7 +96,6 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>${swagger2.version}</version>
-			<!-- <scope>compile</scope> -->
 		</dependency>
 		<!-- Swagger Dependency End -->
 
@@ -113,6 +112,17 @@
 			</exclusions>
 		</dependency>
 		<!-- Mongobee Dependency End -->
+
+		<!-- AWS SQS Dependency Start -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-aws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-aws-messaging</artifactId>
+		</dependency>
+		<!-- AWS SQS Dependency Start -->
 
 		<!-- Validation Dependencies Start -->
 		<dependency>

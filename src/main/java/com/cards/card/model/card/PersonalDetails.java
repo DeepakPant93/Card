@@ -1,4 +1,4 @@
-package com.cards.card.model;
+package com.cards.card.model.card;
 
 import static com.cards.card.constants.CardConstants.DeveloperMessage.*;
 import com.cards.card.validator.annotation.NotBlank;

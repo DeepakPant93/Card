@@ -1,4 +1,4 @@
-package com.cards.card.model;
+package com.cards.card.model.card;
 
 import static com.cards.card.constants.CardConstants.DeveloperMessage.PATTREN_MISMATCHED;
 import static com.cards.card.constants.CardConstants.DeveloperMessage.SIZE_MISMATCHED;
@@ -48,5 +48,7 @@ public class Address {
     @Size(max = 30, message = SIZE_MISMATCHED)
     @Pattern(regexp = "[a-zA-Z&./-_]*", message = PATTREN_MISMATCHED)
     private String addressLine2;
+    
+    private Location location;
 
 }
