@@ -1,5 +1,6 @@
 package com.cards.card.transformer.model;
 
+import com.cards.card.context.CardContext;
 import com.cards.card.entity.AddressEntity;
 import com.cards.card.entity.CardEntity;
 import com.cards.card.entity.CompanyDetailsEntity;
@@ -29,13 +30,15 @@ import org.springframework.stereotype.Component;
 public class ModelToEntityTransformer implements Function<Card, CardEntity> {
 
     private final CardSequenceRepository sequence;
-
+    
+   
     @Override
     public CardEntity apply(Card card) {
         return CardEntity.builder()
                 .id(sequence.getNextSequence())
                 .personalDetails(populatePersonalDetails(card.getPersonalDetails()))
                 .companyDetails(populateCompanyDetails(card.getCompanyDetails()))
+                .userId(CardContext.getUserId())
                 .build();
 
     }
@@ -94,7 +97,7 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
                 .code(mobile.getCode())
                 .verified(mobile.isVerified())
                 .whatsApp(mobile.isEnableWhatsAppNumber()).
-                build();
+                 build();
     }
 
 }

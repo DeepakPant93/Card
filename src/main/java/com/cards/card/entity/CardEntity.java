@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 public class CardEntity {
 
 	private BigInteger id;
+        private String userId;
 	private PersonalDetailsEntity personalDetails;
 	private CompanyDetailsEntity companyDetails;
 	private CardStatus status;

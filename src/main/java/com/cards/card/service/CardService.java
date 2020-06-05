@@ -1,5 +1,6 @@
 package com.cards.card.service;
 
+import com.cards.card.context.CardContext;
 import java.math.BigInteger;
 import java.util.Optional;
 
@@ -18,24 +19,25 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CardService {
 
-	private final CardRepository cardRepository;
-	private final ModelToEntityTransformer entityTransformer;
-	private final EntityToModelTransformer modelTransformer;
+    private final CardRepository cardRepository;
+    private final ModelToEntityTransformer entityTransformer;
+    private final EntityToModelTransformer modelTransformer;
 
-	public Card save(Card card) {
-		try {
-			CardEntity cardEntity = cardRepository.save(entityTransformer.apply(card));
-			card.setId(cardEntity.getId());
-			return card;
-		} catch (Exception exp) {
-			throw new SystemException(
-					"Excaption occured while saving card details for " + card.getPersonalDetails().getFirstname(), exp);
-		}
-	}
+    public Card save(Card card) {
+        try {
+            CardEntity cardEntity = cardRepository.save(entityTransformer.apply(card));
+            card.setId(cardEntity.getId());
+            return card;
+        } catch (Exception exp) {
+            throw new SystemException(
+                    "Excaption occured while saving card details for " + card.getPersonalDetails().getFirstname(), exp);
+        }
+    }
 
-	public Card getByCardId(BigInteger id) {
-		Optional<CardEntity> cardEntity = cardRepository.findById(id);
-		return cardEntity.isPresent() ? modelTransformer.apply(cardEntity.get()) : null;
-	}
+    public Card getByCardId(BigInteger id) {
+        Optional<CardEntity> cardEntityTemp = cardRepository.findById(id);
+        return cardEntityTemp.isPresent() && CardContext.getUserId().equalsIgnoreCase(cardEntityTemp.get().getUserId()) ? modelTransformer.apply(cardEntityTemp.get()) : null;
+    }
+    
 
 }
