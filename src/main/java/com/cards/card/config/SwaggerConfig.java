@@ -39,7 +39,9 @@ public class SwaggerConfig {
 	private List<Parameter> parameters() {
 		Parameter language = parameter("Accept-Language", PARAMETER_TYPE_HEADER, MODEL_REF_STRING, "en-US", false);
 		Parameter authorization = parameter("Authorization", PARAMETER_TYPE_HEADER, MODEL_REF_STRING, "Basic Y2FyZHNhcGlkZXY6V2VsY29tZUAxMjM=", true);
-		return List.of(language, authorization);
+                Parameter userId = parameter("userId", PARAMETER_TYPE_HEADER, MODEL_REF_STRING, "", true);
+                
+		return List.of(language, authorization, userId);
 	}
 
 	private Parameter parameter(String name, String type, String modelRef, String defaultValue, boolean required) {

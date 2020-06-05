@@ -5,7 +5,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.cards.card.context.CardContext;
 import com.cards.card.entity.CardEntity;
+import com.cards.card.execption.ResourceNotAuthorizedException;
+import com.cards.card.execption.ResourceNotFoundException;
 import com.cards.card.execption.SystemException;
 import com.cards.card.model.card.Card;
 import com.cards.card.repository.CardRepository;
@@ -23,6 +26,21 @@ public class CardService {
 	private final EntityToModelTransformer modelTransformer;
 	private final SearchService searchService;
 
+	public Card getByCardId(BigInteger id) {
+		Optional<CardEntity> cardEntityTemp = cardRepository.findById(id);
+
+		if (!cardEntityTemp.isPresent()) {
+			throw new ResourceNotFoundException("Unable to found any card for id " + id);
+		}
+
+		if (cardEntityTemp.isPresent() && !CardContext.getUserId().equalsIgnoreCase(cardEntityTemp.get().getUserId())) {
+			throw new ResourceNotAuthorizedException(String
+					.format("User %s is not authorized to view the card with id %s", CardContext.getUserId(), id));
+		}
+
+		return modelTransformer.apply(cardEntityTemp.get());
+	}
+
 	public Card save(Card card) {
 		try {
 			CardEntity cardEntity = cardRepository.save(entityTransformer.apply(card));
@@ -35,11 +53,6 @@ public class CardService {
 			throw new SystemException(
 					"Excaption occured while saving card details for " + card.getPersonalDetails().getFirstname(), exp);
 		}
-	}
-
-	public Card getByCardId(BigInteger id) {
-		Optional<CardEntity> cardEntity = cardRepository.findById(id);
-		return cardEntity.isPresent() ? modelTransformer.apply(cardEntity.get()) : null;
 	}
 
 }

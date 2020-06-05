@@ -9,7 +9,8 @@ public enum ErrorCode {
 	FIELD_REQUIRED("CS-1002"),
     PATTREN_MISMATCHED("CS-1003"),
     SIZE_MISMATCHED("CS-1003"),
-    INCORRECT_TYPE("CS-1004");
+    INCORRECT_TYPE("CS-1004"),
+    RESOURCE_NOT_AUTHORIZED("CS-1001");
 
 	private final String code;
 
