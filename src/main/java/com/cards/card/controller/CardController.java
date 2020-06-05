@@ -20,6 +20,7 @@ import com.cards.card.model.Card;
 import com.cards.card.service.CardService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @RestController
 @RequestMapping(CARD_ENPOINT)
@@ -27,15 +28,29 @@ import lombok.AllArgsConstructor;
 public class CardController {
 
 	private final CardService cardService;
-
+        
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Card> save(@RequestBody @Valid Card card) {
-		return new ResponseEntity<>(cardService.save(card), HttpStatus.OK);
+           return new ResponseEntity<>(cardService.save(card), HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Card> getByCardId(@PathVariable("id") BigInteger id) {
 		return new ResponseEntity<>(cardService.getByCardId(id), HttpStatus.OK);
 	}
+        
+        
+         public ResponseEntity<Card> updateCard(@RequestBody @Valid Card card ){
+             return  new ResponseEntity<>(cardService.save(card),HttpStatus.OK);
+         
+         }
+        
+        
+        
+        
+        
+        
+        
+        
 
 }
