@@ -18,18 +18,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cards.card.model.card.Card;
+import com.cards.card.model.search.SearchPayload;
 import com.cards.card.service.CardService;
-import com.cards.card.sqs.SqsMessageSender;
+import com.cards.card.util.CardJsonParser;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(CARD_ENPOINT)
 @AllArgsConstructor
+@Slf4j
 public class CardController {
 
 	private final CardService cardService;
-	private final SqsMessageSender sender;
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Card> save(@RequestBody @Valid Card card) {
@@ -42,14 +44,11 @@ public class CardController {
 	}
 
 	@SqsListener("search-queue")
-	public void receive(String card) {
-		System.out.println("Hi I am received. " + card);
-	}
-	
-	@GetMapping(value = "/send")
-	public void send() {
-		
-		System.out.println("Hi I am received. ");
-		sender.sendMessage("Hello AWS!!");
+	public void receive(String payload) {
+		log.info("Message received...");
+		log.info(payload);
+		SearchPayload searchPayload = (SearchPayload) CardJsonParser.fromJson(payload, SearchPayload.class);
+		log.info(searchPayload.toString());
+
 	}
 }

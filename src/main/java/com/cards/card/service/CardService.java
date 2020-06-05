@@ -21,11 +21,15 @@ public class CardService {
 	private final CardRepository cardRepository;
 	private final ModelToEntityTransformer entityTransformer;
 	private final EntityToModelTransformer modelTransformer;
+	private final SearchService searchService;
 
 	public Card save(Card card) {
 		try {
 			CardEntity cardEntity = cardRepository.save(entityTransformer.apply(card));
 			card.setId(cardEntity.getId());
+
+			// Sending card details to search service
+			searchService.sendMessage(card);
 			return card;
 		} catch (Exception exp) {
 			throw new SystemException(

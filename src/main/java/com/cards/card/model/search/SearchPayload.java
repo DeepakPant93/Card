@@ -1,5 +1,7 @@
 package com.cards.card.model.search;
 
+import java.math.BigInteger;
+
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class SearchPayload {
 
 	private String userId;
-	private String cardId;
+	private BigInteger cardId;
 	private String companyname;
 	private String cardType;
 	private String cardStatus;

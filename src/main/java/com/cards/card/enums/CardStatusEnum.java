@@ -1,6 +1,6 @@
 package com.cards.card.enums;
 
-public enum CardStatus {
+public enum CardStatusEnum {
 
 	ACTIVE, INACTIVE, DELETED
 }

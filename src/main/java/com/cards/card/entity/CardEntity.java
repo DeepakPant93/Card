@@ -4,7 +4,7 @@ import java.math.BigInteger;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.cards.card.enums.CardStatus;
+import com.cards.card.enums.CardStatusEnum;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -22,6 +22,6 @@ public class CardEntity {
 	private BigInteger id;
 	private PersonalDetailsEntity personalDetails;
 	private CompanyDetailsEntity companyDetails;
-	private CardStatus status;
+	private CardStatusEnum status;
 
 }

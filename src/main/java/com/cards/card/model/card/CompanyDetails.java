@@ -1,5 +1,7 @@
 package com.cards.card.model.card;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ public class CompanyDetails {
 	private String logo;
 	private String thumbnailUrl;
 	private String logoImageUrl;
+	private List<String> categories;
 
 	@Valid
 	private Address address;
