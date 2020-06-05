@@ -3,7 +3,7 @@ package com.cards.card.execption.handler;
 import static com.cards.card.exception.model.ErrorCode.SYSTEM_EXCEPTION;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
+import static org.springframework.http.HttpStatus.*;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import com.cards.card.exception.model.ApiError;
+import com.cards.card.execption.AuthenticationException;
 import com.cards.card.execption.BusinessException;
 
 import lombok.AllArgsConstructor;
@@ -42,5 +43,11 @@ public class GlobaExceptionHandler {
 			WebRequest request) {
 		log.error(EXCEPTION_MSG_FORMAT + "{}", "Validation", valExp.getMessage());
 		return new ResponseEntity<>(helper.apiError(valExp, request.getLocale()), BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(AuthenticationException.class)
+	public ResponseEntity<ApiError> handleAuthenticationException(AuthenticationException busExp, WebRequest request) {
+		log.error(EXCEPTION_MSG_FORMAT, "Authentication", busExp);
+		return new ResponseEntity<>(helper.apiError(busExp, request.getLocale()), UNAUTHORIZED);
 	}
 }

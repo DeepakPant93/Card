@@ -9,7 +9,7 @@ public class ApiException extends RuntimeException {
 	private static final long serialVersionUID = -8262500809779681557L;
 
 	@Getter
-	protected ErrorCode code;
+	private final ErrorCode code;
 
 	public ApiException(ErrorCode code) {
 		this.code = code;

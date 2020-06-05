@@ -24,7 +24,6 @@ public class BusinessException extends ApiException {
 	public BusinessException(ErrorCode code, ErrorAttribute attribute, Throwable cause) {
 		super(code, cause);
 		this.attribute = attribute;
-		this.code = code;
 	}
 
 	public BusinessException(ErrorCode code, String message) {
@@ -39,7 +38,6 @@ public class BusinessException extends ApiException {
 	public BusinessException(ErrorCode code, String message, ErrorAttribute attribute, Throwable cause) {
 		super(code, message, cause);
 		this.attribute = attribute;
-		this.code = code;
 	}
 
 	public BusinessException(ErrorCode code, String message, Throwable cause) {
