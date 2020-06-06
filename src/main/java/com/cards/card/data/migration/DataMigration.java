@@ -13,6 +13,6 @@ public class DataMigration{
 
 	@ChangeSet(order = "001", author = "Deepak", id = "insert additional payment method")
 	public void insertAdditionalPaymentOption(MongoTemplate mongoTemplate) {
-		log.info("Migration completed for Change set 001.");
+//		log.info("Migration completed for Change set 001.");
 	}
 }
