@@ -1,4 +1,4 @@
-package com.cards.card.transformer.entity;
+package com.cards.card.transformer;
 
 import java.util.List;
 import java.util.Objects;

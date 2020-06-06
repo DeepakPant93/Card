@@ -12,8 +12,8 @@ import com.cards.card.execption.ResourceNotFoundException;
 import com.cards.card.execption.SystemException;
 import com.cards.card.model.card.Card;
 import com.cards.card.repository.CardRepository;
-import com.cards.card.transformer.entity.EntityToModelTransformer;
-import com.cards.card.transformer.model.ModelToEntityTransformer;
+import com.cards.card.transformer.EntityToModelTransformer;
+import com.cards.card.transformer.ModelToEntityTransformer;
 
 import lombok.AllArgsConstructor;
 

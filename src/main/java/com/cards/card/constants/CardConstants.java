@@ -4,7 +4,7 @@ public interface CardConstants {
 
 	interface Endpoints {
 		String API_V1_ENDPOINT = "/api/v1";
-		String CARD_ENPOINT = API_V1_ENDPOINT + "/card";
+		String CARD_ENPOINT = API_V1_ENDPOINT + "/search";
 	}
 
 	interface DeveloperMessage {
