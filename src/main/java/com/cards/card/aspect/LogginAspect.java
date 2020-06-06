@@ -1,4 +1,4 @@
-package com.cards.card.logging;
+package com.cards.card.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;

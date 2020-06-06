@@ -1,4 +1,4 @@
-package com.cards.card.transformer.model;
+package com.cards.card.transformer;
 
 import com.cards.card.context.CardContext;
 import com.cards.card.entity.AddressEntity;

@@ -8,7 +8,7 @@ import com.cards.card.enums.CardTypeEnum;
 import com.cards.card.model.card.Card;
 import com.cards.card.model.search.SearchPayload;
 import com.cards.card.sqs.SqsMessageSender;
-import com.cards.card.transformer.model.CardToSearchPayloadTransformer;
+import com.cards.card.transformer.CardToSearchPayloadTransformer;
 
 import lombok.AllArgsConstructor;
 

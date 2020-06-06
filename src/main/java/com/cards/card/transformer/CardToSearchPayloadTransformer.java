@@ -1,9 +1,10 @@
-package com.cards.card.transformer.model;
+package com.cards.card.transformer;
 
 import java.util.function.Function;
 
 import org.springframework.stereotype.Component;
 
+import com.cards.card.context.CardContext;
 import com.cards.card.model.card.Card;
 import com.cards.card.model.card.Location;
 import com.cards.card.model.search.SearchPayload;
@@ -17,6 +18,7 @@ public class CardToSearchPayloadTransformer implements Function<Card, SearchPayl
 		Location companyLocation = card.getCompanyDetails().getAddress().getLocation();
 
 		return SearchPayload.builder()
+				.userId(CardContext.getUserId())
 				.cardId(card.getId())
 				.cardStatus(card.getStatus())
 				.cardType(card.getType())
