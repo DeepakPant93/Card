@@ -14,7 +14,9 @@ import com.cards.card.model.card.ContactDetails;
 import com.cards.card.model.card.MobileDetails;
 import com.cards.card.model.card.PersonalDetails;
 import com.cards.card.repository.sequence.CardSequenceRepository;
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -34,8 +36,9 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
    
     @Override
     public CardEntity apply(Card card) {
+        BigInteger cardId = Objects.nonNull(card.getId()) ? card.getId() : sequence.getNextSequence();
         return CardEntity.builder()
-                .id(sequence.getNextSequence())
+                .id(cardId)
                 .personalDetails(populatePersonalDetails(card.getPersonalDetails()))
                 .companyDetails(populateCompanyDetails(card.getCompanyDetails()))
                 .userId(CardContext.getUserId())
