@@ -14,4 +14,5 @@ Cards service is used to perform curd operation on cards
 -Dspring.application.name=card
 -Dcloud.aws.credentials.access-key=AKIA3GIZA2Y5KFTP2PLR
 -Dcloud.aws.credentials.secret-key=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
+-Dspring.devtools.restart.trigger-file=hot-deploy
 ```
