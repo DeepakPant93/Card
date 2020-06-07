@@ -19,5 +19,5 @@ Cards service is used to perform curd operation on cards
 
 ##### Important links
 
-- [Swagger-Dev](http://search-service-dev.ap-south-1.elasticbeanstalk.com/card/swagger-ui.html)
-- [Health-Dev](http://search-service-dev.ap-south-1.elasticbeanstalk.com/card/actuator/health)
+- [Swagger-Dev](http://card-service-dev.ap-south-1.elasticbeanstalk.com/card/swagger-ui.html)
+- [Health-Dev](http://card-service-dev.ap-south-1.elasticbeanstalk.com/card/actuator/health)
