@@ -11,7 +11,6 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -31,9 +30,8 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiEndPointsInfo() {
-		return new ApiInfoBuilder().title("Cards").description("Card Service REST API")
-				.contact(new Contact("suraj", "www.javaguides.net", "surajkarki08@gmail.com")).license("Apache 2.0")
-				.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0").build();
+		return new ApiInfoBuilder().title("Card Service").description("Card Service REST API").license("Apache 2.0")
+				.version("1.0.0").build();
 	}
 
 	private List<Parameter> parameters() {
