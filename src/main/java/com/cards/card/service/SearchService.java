@@ -18,13 +18,16 @@ public class SearchService {
 
 	private final CardToSearchPayloadTransformer searchPayloadTransformer;
 	private final SqsMessageSender messageSender;
+        /**
+         * @description  sendMessage function is use Only Business card will go to the search service
+         * 
+         * @param card 
+         */
 
 	public void sendMessage(Card card) {
 
-		// Only Business card will go to the search service
 		if (Objects.nonNull(card) && CardTypeEnum.BUSINESS.name().equals(card.getType())) {
 			SearchPayload searchPayload = searchPayloadTransformer.apply(card);
-
 			messageSender.sendMessage(searchPayload);
 		}
 	}

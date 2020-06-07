@@ -43,6 +43,19 @@ public class CardService {
     }
 
     public Card save(Card card) {
+        card.setId(null);
+        return process(card);
+    }
+
+    public Card updateCard(Card card) {
+        if (Objects.nonNull(card.getId()) && Objects.nonNull(getByCardId(card.getId()))) {
+            process(card);
+        }
+        return card;
+
+    }
+
+    private Card process(Card card) {
         try {
             CardEntity cardEntity = cardRepository.save(entityTransformer.apply(card));
             card.setId(cardEntity.getId());
@@ -55,14 +68,4 @@ public class CardService {
                     "Excaption occured while saving card details for " + card.getPersonalDetails().getFirstname(), exp);
         }
     }
-
-    public Card updateCard(Card card) {
-
-        if (Objects.nonNull(card.getId()) && Objects.nonNull(getByCardId(card.getId()))) {
-            save(card);
-        }
-        return card;
-
-    }
-
 }

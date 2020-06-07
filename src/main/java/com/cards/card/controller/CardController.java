@@ -39,8 +39,9 @@ public class CardController {
 		return new ResponseEntity<>(cardService.getByCardId(id), HttpStatus.OK);
 	}
 
-	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Card> updateCard(@RequestBody @Valid Card card) {
-		return new ResponseEntity<>(cardService.save(card), HttpStatus.OK);
+	@PutMapping(value = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Card> updateCard( @PathVariable("id") BigInteger id,@RequestBody @Valid Card card) {
+                 card.setId(id);
+		return new ResponseEntity<>(cardService.updateCard(card), HttpStatus.OK);
 	}
 }
