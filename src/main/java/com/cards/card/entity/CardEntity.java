@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.cards.card.enums.CardStatusEnum;
+import com.cards.card.enums.CardTypeEnum;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,5 +25,6 @@ public class CardEntity {
 	private PersonalDetailsEntity personalDetails;
 	private CompanyDetailsEntity companyDetails;
 	private CardStatusEnum status;
+        private CardTypeEnum cardType;
 
 }

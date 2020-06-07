@@ -30,8 +30,11 @@ public class EntityToModelTransformer implements Function<CardEntity, Card> {
 
 	@Override
 	public Card apply(CardEntity cardEntity) {
-	      return Card.builder().personalDetails(populatePersonalDetails(cardEntity.getPersonalDetails()))
+	      return Card.builder().id(cardEntity.getId())
+              .personalDetails(populatePersonalDetails(cardEntity.getPersonalDetails()))
 	      .companyDetails(populateCompanyDetails(cardEntity.getCompanyDetails()))
+              .status(cardEntity.getStatus().toString())
+              .type(cardEntity.getCardType().toString())
 	      .build();
 	}
 

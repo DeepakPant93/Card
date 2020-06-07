@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class Card {
-
+       
 	private BigInteger id;
 
 	@NotNull(message = FIELD_REQUIRED)
