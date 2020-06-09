@@ -14,9 +14,13 @@ import com.cards.card.model.card.Card;
 import com.cards.card.repository.CardRepository;
 import com.cards.card.transformer.EntityToModelTransformer;
 import com.cards.card.transformer.ModelToEntityTransformer;
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Objects;
 
 import lombok.AllArgsConstructor;
+import org.springframework.util.ReflectionUtils;
+import springfox.documentation.schema.Example;
 
 @Service
 @AllArgsConstructor
@@ -59,7 +63,6 @@ public class CardService {
         try {
             CardEntity cardEntity = cardRepository.save(entityTransformer.apply(card));
             card.setId(cardEntity.getId());
-
             // Sending card details to search service
             searchService.sendMessage(card);
             return card;
@@ -67,5 +70,18 @@ public class CardService {
             throw new SystemException(
                     "Excaption occured while saving card details for " + card.getPersonalDetails().getFirstname(), exp);
         }
+    }
+
+    public Card patchCard(BigInteger id, Map<Object, Object> fields) {
+        if (Objects.nonNull(id)) {
+            Card card = getByCardId(id);
+            fields.forEach((k, v) -> {
+                Field field = ReflectionUtils.findField(Card.class, (String) k);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, card, v);
+            });
+            return process(card);
+        }
+        return null;
     }
 }
