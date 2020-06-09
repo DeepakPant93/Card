@@ -1,5 +1,6 @@
 package com.cards.card.model.card;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CompanyDetails {
 
 	private String name;

@@ -7,6 +7,8 @@ import com.cards.card.entity.CompanyDetailsEntity;
 import com.cards.card.entity.ContactDetailsEntity;
 import com.cards.card.entity.MobileDetailsEntiy;
 import com.cards.card.entity.PersonalDetailsEntity;
+import com.cards.card.enums.CardStatusEnum;
+import com.cards.card.enums.CardTypeEnum;
 import com.cards.card.model.card.Address;
 import com.cards.card.model.card.Card;
 import com.cards.card.model.card.CompanyDetails;
@@ -14,7 +16,10 @@ import com.cards.card.model.card.ContactDetails;
 import com.cards.card.model.card.MobileDetails;
 import com.cards.card.model.card.PersonalDetails;
 import com.cards.card.repository.sequence.CardSequenceRepository;
+import com.cards.card.validator.annotation.CardType;
+import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -34,11 +39,14 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
    
     @Override
     public CardEntity apply(Card card) {
+        BigInteger cardId = Objects.nonNull(card.getId()) ? card.getId() : sequence.getNextSequence();
         return CardEntity.builder()
-                .id(sequence.getNextSequence())
+                .id(cardId)
                 .personalDetails(populatePersonalDetails(card.getPersonalDetails()))
                 .companyDetails(populateCompanyDetails(card.getCompanyDetails()))
                 .userId(CardContext.getUserId())
+                .cardType(CardTypeEnum.valueOf(card.getType()))
+                .status(CardStatusEnum.valueOf(card.getStatus()))
                 .build();
 
     }
