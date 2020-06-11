@@ -12,12 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class AddressEntity {
 
-	private String state;
-	private String district;
-	private String country;
-	private String pin;
-	private String landmark;
 	private String addressLine1;
-	private String addressLine2;
-
+	private String country;
+	private String city;
+	private String district;
+	private String landmark;
+	private String pin;
+	private String state;
 }

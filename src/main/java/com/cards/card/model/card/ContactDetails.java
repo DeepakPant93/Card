@@ -1,11 +1,12 @@
 package com.cards.card.model.card;
 
-import com.cards.card.validator.annotation.NotBlank;
 import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 
 import com.cards.card.validator.annotation.NotEmptyCollection;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.validation.constraints.Email;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,11 +21,10 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ContactDetails {
 
-    @NotBlank
-    @Email
-    private String email;
-    private boolean emailVerified;
-    @NotEmptyCollection
-    private List<MobileDetails> mobileDetails;
+	@Email
+	private String email;
 
+	@NotEmptyCollection
+	@Valid
+	private List<MobileDetails> mobileDetails;
 }

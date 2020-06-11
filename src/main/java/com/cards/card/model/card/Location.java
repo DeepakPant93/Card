@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class Location {
 
-	private String name;
 	private String longitude;
 	private String latitude;
 }

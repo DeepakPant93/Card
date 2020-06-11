@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @Document(collection = "Card")
 public class CardEntity {
 
-	private BigInteger id;
-        private String userId;
-	private PersonalDetailsEntity personalDetails;
 	private CompanyDetailsEntity companyDetails;
+	private BigInteger id;
+	private PersonalDetailsEntity personalDetails;
 	private CardStatusEnum status;
-        private CardTypeEnum cardType;
+	private CardTypeEnum type;
+	private String userId;
 
 }

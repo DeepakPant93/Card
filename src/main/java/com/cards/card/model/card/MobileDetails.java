@@ -1,5 +1,7 @@
 package com.cards.card.model.card;
 
+import javax.validation.constraints.NotNull;
+
 import com.cards.card.validator.annotation.Code;
 import com.cards.card.validator.annotation.Mobile;
 import com.cards.card.validator.annotation.NotBlank;
@@ -17,12 +19,16 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MobileDetails {
 
-    @NotBlank
-    @Code
-    private String code;
-    @NotBlank
-    @Mobile
-    private String number;
-    private boolean enableWhatsAppNumber;
-    private boolean verified;
+	@NotBlank
+	@Code
+	private String code;
+
+	@NotBlank
+	@Mobile
+	private String number;
+
+	@NotNull
+	private boolean primary;
+
+	private boolean whatsAppNumber;
 }

@@ -23,16 +23,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Card {
-       
+
+	@NotNull(message = FIELD_REQUIRED)
+	@Valid
+	private CompanyDetails companyDetails;
+
 	private BigInteger id;
 
 	@NotNull(message = FIELD_REQUIRED)
 	@Valid
 	private PersonalDetails personalDetails;
-
-	@NotNull(message = FIELD_REQUIRED)
-	@Valid
-	private CompanyDetails companyDetails;
 
 	@NotBlank
 	@CardStatus
@@ -41,5 +41,4 @@ public class Card {
 	@NotBlank
 	@CardType
 	private String type;
-
 }

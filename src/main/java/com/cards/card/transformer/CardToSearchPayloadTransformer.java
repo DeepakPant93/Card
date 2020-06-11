@@ -5,6 +5,7 @@ import java.util.function.Function;
 import org.springframework.stereotype.Component;
 
 import com.cards.card.context.CardContext;
+import com.cards.card.model.card.Address;
 import com.cards.card.model.card.Card;
 import com.cards.card.model.card.Location;
 import com.cards.card.model.search.SearchPayload;
@@ -15,7 +16,8 @@ public class CardToSearchPayloadTransformer implements Function<Card, SearchPayl
 	@Override
 	public SearchPayload apply(Card card) {
 
-		Location companyLocation = card.getCompanyDetails().getAddress().getLocation();
+		Address address = card.getCompanyDetails().getAddress();
+		Location companyLocation = address.getLocation();
 
 		return SearchPayload.builder()
 				.userId(CardContext.getUserId())
@@ -25,9 +27,9 @@ public class CardToSearchPayloadTransformer implements Function<Card, SearchPayl
 				.companyname(card.getCompanyDetails().getName())
 				.latitude(companyLocation.getLatitude())
 				.longitude(companyLocation.getLongitude())
-				.locationName(companyLocation.getName())
+				.address(address.getAddressLine1())
+				.city(address.getCity())
 				.thumbnailUrl(card.getCompanyDetails().getThumbnailUrl())
 				.build();
 	}
-
 }

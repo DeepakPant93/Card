@@ -12,11 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class CompanyDetailsEntity {
 
+	private AddressEntity address;
+	private String logoUrl;
 	private String name;
 	private String tagLine;
 	private String website;
-	private String logo;
-	private String logoImageUrl;
-	private AddressEntity address;
-	private ContactDetailsEntity contactDetails;
 }

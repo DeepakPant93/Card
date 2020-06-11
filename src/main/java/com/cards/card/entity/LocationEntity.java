@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class LocationEntity {
 
-	private String name;
-	private double longitude;
 	private double latitude;
+	private double longitude;
 }

@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class PersonalDetailsEntity {
 
-	private String firstname;
-	private String middlename;
-	private String lastname;
-	private String designation;
-	private AddressEntity address;
 	private ContactDetailsEntity contactDetails;
+	private String designation;
+	private String firstname;
+	private String lastname;
+	private String middlename;
 }
