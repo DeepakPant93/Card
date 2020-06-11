@@ -32,18 +32,18 @@ public class EntityToModelTransformer implements Function<CardEntity, Card> {
 	public Card apply(CardEntity cardEntity) {
 	      return Card.builder().id(cardEntity.getId())
               .personalDetails(populatePersonalDetails(cardEntity.getPersonalDetails()))
-	      .companyDetails(populateCompanyDetails(cardEntity.getCompanyDetails()))
-              .status(cardEntity.getStatus().toString())
-              .type(cardEntity.getCardType().toString())
-	      .build();
+              .companyDetails(populateCompanyDetails(cardEntity.getCompanyDetails()))
+              .status(cardEntity.getStatus().name())
+              .type(cardEntity.getType().name())
+              .build();
 	}
 
     private PersonalDetails populatePersonalDetails(PersonalDetailsEntity detailsEntity) {
-        return PersonalDetails.builder().firstname(detailsEntity.getFirstname())
+        return PersonalDetails.builder()
+        		.firstname(detailsEntity.getFirstname())
                 .lastname(detailsEntity.getLastname())
                 .middlename(detailsEntity.getMiddlename())
                 .designation(detailsEntity.getDesignation())
-                .address(populateAddress(detailsEntity.getAddress()))
                 .contactDetails(populateContactDetails(detailsEntity.getContactDetails()))
                 .build();
 
@@ -53,11 +53,11 @@ public class EntityToModelTransformer implements Function<CardEntity, Card> {
         Address address = null;
         if (Objects.nonNull(addressEntity)) {
             Address.builder().addressLine1(addressEntity.getAddressLine1())
-                    .addressLine2(addressEntity.getAddressLine2())
                     .country(addressEntity.getCountry())
                     .district(addressEntity.getDistrict())
                     .landmark(addressEntity.getLandmark())
                     .pin(addressEntity.getPin())
+                    .city(addressEntity.getCity())
                     .state(addressEntity.getState())
                     .build();
         }
@@ -68,7 +68,6 @@ public class EntityToModelTransformer implements Function<CardEntity, Card> {
         ContactDetails contactDetails = null;
         if (Objects.nonNull(contactDetailsEntity)) {
             contactDetails = ContactDetails.builder().email(contactDetailsEntity.getEmail())
-                    .emailVerified(contactDetailsEntity.isEmailVerified())
                     .mobileDetails(populateMobileDetailList(contactDetailsEntity.getMobileDetails()))
                     .build();
         }
@@ -82,20 +81,16 @@ public class EntityToModelTransformer implements Function<CardEntity, Card> {
     private MobileDetails populateMobileDetail(MobileDetailsEntiy mobile) {
         return MobileDetails.builder().number(mobile.getNumber())
                 .code(mobile.getCode())
-                .verified(mobile.isVerified())
-                .enableWhatsAppNumber(mobile.isWhatsApp())
+                .whatsAppNumber(mobile.isWhatsAppNumber())
                 .build();
     }
 
     private CompanyDetails populateCompanyDetails(CompanyDetailsEntity companyDetails) {
         return CompanyDetails.builder().name(companyDetails.getName())
                 .tagLine(companyDetails.getTagLine())
-                .logo(companyDetails.getLogo())
                 .website(companyDetails.getWebsite())
-                .logoImageUrl(companyDetails.getLogoImageUrl())
+                .logoUrl(companyDetails.getLogoUrl())
                 .address(populateAddress(companyDetails.getAddress()))
-                .contactDetails(populateContactDetails(companyDetails.getContactDetails()))
                 .build();
-
     }
 }

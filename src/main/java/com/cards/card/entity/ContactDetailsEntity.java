@@ -16,6 +16,6 @@ public class ContactDetailsEntity {
 
 	private String email;
 	private List<MobileDetailsEntiy> mobileDetails;
-        private boolean emailVerified;
+	private boolean emailVerified;
 
 }

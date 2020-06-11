@@ -14,13 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class SearchPayload {
 
-	private String userId;
+	private String address;
 	private BigInteger cardId;
-	private String companyname;
-	private String cardType;
 	private String cardStatus;
-	private String thumbnailUrl;
-	private String locationName;
-	private String longitude;
+	private String cardType;
+	private String city;
+	private String companyname;
 	private String latitude;
+	private String longitude;
+	private String thumbnailUrl;
+	private String userId;
 }

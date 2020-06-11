@@ -35,13 +35,13 @@ public class CardController {
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Card> getByCardId(@PathVariable("id") BigInteger id) {
+	public ResponseEntity<Card> getById(@PathVariable("id") BigInteger id) {
 		return new ResponseEntity<>(cardService.getByCardId(id), HttpStatus.OK);
 	}
 
-	@PutMapping(value = "/{id}" ,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Card> updateCard( @PathVariable("id") BigInteger id,@RequestBody @Valid Card card) {
-                 card.setId(id);
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Card> updateCard(@PathVariable("id") BigInteger id, @RequestBody @Valid Card card) {
+		card.setId(id);
 		return new ResponseEntity<>(cardService.updateCard(card), HttpStatus.OK);
 	}
 }

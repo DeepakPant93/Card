@@ -1,5 +1,13 @@
 package com.cards.card.transformer;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Component;
+
 import com.cards.card.context.CardContext;
 import com.cards.card.entity.AddressEntity;
 import com.cards.card.entity.CardEntity;
@@ -16,14 +24,8 @@ import com.cards.card.model.card.ContactDetails;
 import com.cards.card.model.card.MobileDetails;
 import com.cards.card.model.card.PersonalDetails;
 import com.cards.card.repository.sequence.CardSequenceRepository;
-import com.cards.card.validator.annotation.CardType;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 
 /**
  *
@@ -45,7 +47,7 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
                 .personalDetails(populatePersonalDetails(card.getPersonalDetails()))
                 .companyDetails(populateCompanyDetails(card.getCompanyDetails()))
                 .userId(CardContext.getUserId())
-                .cardType(CardTypeEnum.valueOf(card.getType()))
+                .type(CardTypeEnum.valueOf(card.getType()))
                 .status(CardStatusEnum.valueOf(card.getStatus()))
                 .build();
 
@@ -56,19 +58,20 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
                 .firstname(personalDetails.getFirstname())
                 .middlename(personalDetails.getMiddlename())
                 .designation(personalDetails.getDesignation())
-                .address(populateAddress(personalDetails.getAddress()))
+                .contactDetails(populateContactDetails(personalDetails.getContactDetails()))
                 .build();
 
     }
 
     private AddressEntity populateAddress(Address address) {
-        return AddressEntity.builder().addressLine1(address.getAddressLine1())
-                .addressLine2(address.getAddressLine2())
+        return AddressEntity.builder()
+        		.addressLine1(address.getAddressLine1())
                 .country(address.getCountry())
                 .district(address.getDistrict())
                 .landmark(address.getLandmark())
                 .pin(address.getPin())
                 .state(address.getState())
+                .city(address.getCity())
                 .build();
 
     }
@@ -76,11 +79,9 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
     private CompanyDetailsEntity populateCompanyDetails(CompanyDetails companyDetails) {
         return CompanyDetailsEntity.builder().name(companyDetails.getName())
                 .tagLine(companyDetails.getTagLine())
-                .logo(companyDetails.getLogo())
                 .website(companyDetails.getWebsite())
-                .logoImageUrl(companyDetails.getLogoImageUrl())
+                .logoUrl(companyDetails.getLogoUrl())
                 .address(populateAddress(companyDetails.getAddress()))
-                .contactDetails(populateContactDetails(companyDetails.getContactDetails()))
                 .build();
 
     }
@@ -93,19 +94,15 @@ public class ModelToEntityTransformer implements Function<Card, CardEntity> {
 
     }
 
-    private List<MobileDetailsEntiy> populateMobileDetailList(List<MobileDetails> mobileDetailses) {
-        return mobileDetailses.stream().map(mobile -> {
-            return getMobileDetail(mobile );
-        }).collect(Collectors.toList());
+	private List<MobileDetailsEntiy> populateMobileDetailList(List<MobileDetails> mobileDetailses) {
+		return mobileDetailses.stream().map(mobile -> getMobileDetail(mobile)).collect(Collectors.toList());
 
     }
 
     private MobileDetailsEntiy getMobileDetail(MobileDetails mobile) {
         return MobileDetailsEntiy.builder().number(mobile.getNumber())
                 .code(mobile.getCode())
-                .verified(mobile.isVerified())
-                .whatsApp(mobile.isEnableWhatsAppNumber()).
-                 build();
+                .whatsAppNumber(mobile.isWhatsAppNumber())
+                .build();
     }
-
 }

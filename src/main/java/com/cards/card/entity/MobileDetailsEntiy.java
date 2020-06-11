@@ -14,6 +14,6 @@ public class MobileDetailsEntiy {
 
 	private String code;
 	private String number;
-	private boolean whatsApp;
 	private boolean verified;
+	private boolean whatsAppNumber;
 }

@@ -5,6 +5,7 @@ import static com.cards.card.constants.CardConstants.DeveloperMessage.FIELD_REQU
 import com.cards.card.validator.annotation.CardStatus;
 import com.cards.card.validator.annotation.CardType;
 import com.cards.card.validator.annotation.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigInteger;
 
 import javax.validation.Valid;
@@ -20,17 +21,18 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Card {
-       
+
+	@NotNull(message = FIELD_REQUIRED)
+	@Valid
+	private CompanyDetails companyDetails;
+
 	private BigInteger id;
 
 	@NotNull(message = FIELD_REQUIRED)
 	@Valid
 	private PersonalDetails personalDetails;
-
-	@NotNull(message = FIELD_REQUIRED)
-	@Valid
-	private CompanyDetails companyDetails;
 
 	@NotBlank
 	@CardStatus
@@ -39,5 +41,4 @@ public class Card {
 	@NotBlank
 	@CardType
 	private String type;
-
 }
